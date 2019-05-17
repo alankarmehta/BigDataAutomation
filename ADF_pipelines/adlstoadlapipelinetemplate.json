@@ -1,0 +1,224 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataFactoryName": {
+            "type": "string"
+        },
+        "dataFactoryLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "Location of the data factory."
+            }
+        },
+        "inputlinkeservice_servicePrincipalKey": {
+            "type": "secureString"
+        },
+        "AzureDataLakeAnalyticslinkservice_servicePrincipalKey": {
+            "type": "secureString"
+        },
+        "inputlinkeservice_properties_typeProperties_dataLakeStoreUri": {
+            "type": "string"
+        },
+        "inputlinkeservice_properties_typeProperties_servicePrincipalId": {
+            "type": "string"
+        },
+        "inputlinkeservice_properties_typeProperties_tenant": {
+            "type": "string"
+        },
+        "inputlinkeservice_properties_typeProperties_subscriptionId": {
+            "type": "string"
+        },
+        "inputlinkeservice_properties_typeProperties_resourceGroupName": {
+            "type": "string"
+        },
+        "AzureDataLakeAnalyticslinkservice_properties_typeProperties_accountName": {
+            "type": "string"
+        },
+        "AzureDataLakeAnalyticslinkservice_properties_typeProperties_servicePrincipalId": {
+            "type": "string"
+        },
+        "AzureDataLakeAnalyticslinkservice_properties_typeProperties_tenant": {
+            "type": "string"
+        },
+        "AzureDataLakeAnalyticslinkservice_properties_typeProperties_subscriptionId": {
+            "type": "string"
+        },
+        "AzureDataLakeAnalyticslinkservice_properties_typeProperties_resourceGroupName": {
+            "type": "string"
+        }
+       
+    },
+    "variables": {
+        "AzureDataLakeStoreLinkedServiceName": "DataLakeStorelinkedservice_04",
+        "AzureDataLakeAnalyticslinkedserviceName": "DataLakeAnalyticsLinkedservice_04",
+        "inputDatasetName": "datalakestoredataset_04",
+        "outputDatasetName": "Datalakeanalyticsdataset_04",
+        "pipelineName": "adlstoadlapipe_04"
+    },
+    "resources": [
+        {
+            "name": "[parameters('dataFactoryName')]",
+            "apiVersion": "2018-06-01",
+            "type": "Microsoft.DataFactory/factories",
+            "location":"[parameters('dataFactoryLocation')]",
+            "properties":{},
+            "resources": [
+                {
+                    "name": "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                    "type": "linkedServices",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "annotations": [],
+                        "type": "AzureDataLakeStore",
+                        "typeProperties": {
+                            "dataLakeStoreUri": "[parameters('inputlinkeservice_properties_typeProperties_dataLakeStoreUri')]",
+                            "servicePrincipalId": "[parameters('inputlinkeservice_properties_typeProperties_servicePrincipalId')]",
+                            "servicePrincipalKey": {
+                                "type": "SecureString",
+                                "value": "[parameters('inputlinkeservice_servicePrincipalKey')]"
+                            },
+                            "tenant": "[parameters('inputlinkeservice_properties_typeProperties_tenant')]",
+                            "subscriptionId": "[parameters('inputlinkeservice_properties_typeProperties_subscriptionId')]",
+                            "resourceGroupName": "[parameters('inputlinkeservice_properties_typeProperties_resourceGroupName')]"
+                        }
+                    },
+                    "dependsOn": [
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                    "type": "linkedServices",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "annotations": [],
+                        "type": "AzureDataLakeAnalytics",
+                        "typeProperties": {
+                            "accountName": "[parameters('AzureDataLakeAnalyticslinkservice_properties_typeProperties_accountName')]",
+                            "servicePrincipalId": "[parameters('AzureDataLakeAnalyticslinkservice_properties_typeProperties_servicePrincipalId')]",
+                            "servicePrincipalKey": {
+                                "type": "SecureString",
+                                "value": "[parameters('AzureDataLakeAnalyticslinkservice_servicePrincipalKey')]"
+                            },
+                            "tenant": "[parameters('AzureDataLakeAnalyticslinkservice_properties_typeProperties_tenant')]",
+                            "subscriptionId": "[parameters('AzureDataLakeAnalyticslinkservice_properties_typeProperties_subscriptionId')]",
+                            "resourceGroupName": "[parameters('AzureDataLakeAnalyticslinkservice_properties_typeProperties_resourceGroupName')]"
+                        }
+                    },
+                    "dependsOn": [
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('inputdatasetName')]",
+                    "type": "datasets",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "linkedServiceName": {
+                            "referenceName": "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                            "type": "LinkedServiceReference"
+                        },
+                        "annotations": [],
+                        "type": "DelimitedText",
+                        "typeProperties": {
+                            "location": {
+                                "type": "AzureDataLakeStoreLocation",
+                                "folderPath": "root/output"
+                            },
+                            "columnDelimiter": ",",
+                            "escapeChar": "\\",
+                            "quoteChar": "\""
+                        },
+                        "schema": [
+                            {
+                                "name": "Prop_0",
+                                "type": "String"
+                            }
+                        ]
+                    },
+                    "dependsOn": [
+                        "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('outputDatasetName')]",
+                    "type": "datasets",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "linkedServiceName": {
+                            "referenceName": "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                            "type": "LinkedServiceReference"
+                        },
+                        "annotations": [],
+                        "type": "DelimitedText",
+                        "typeProperties": {
+                            "location": {
+                                "type": "AzureDataLakeStoreLocation",
+                                "folderPath": "modifieddata"
+                            },
+                            "columnDelimiter": ",",
+                            "escapeChar": "\\",
+                            "quoteChar": "\""
+                        },
+                        "schema": []
+                    },
+                    "dependsOn": [
+                        "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('pipelineName')]",
+                    "type": "pipelines",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "activities": [
+                            {
+                                "name": "U-SQL1",
+                                "type": "DataLakeAnalyticsU-SQL",
+                                "dependsOn": [],
+                                "policy": {
+                                    "timeout": "7.00:00:00",
+                                    "retry": 0,
+                                    "retryIntervalInSeconds": 30,
+                                    "secureOutput": false,
+                                    "secureInput": false
+                                },
+                                "userProperties": [],
+                                "typeProperties": {
+                                    "scriptPath": "root/output/SummarizeLogs.usql",
+                                    "scriptLinkedService": {
+                                        "referenceName": "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                                        "type": "LinkedServiceReference"
+
+                                    },
+                                    "parameters": {
+                                        "log_file": "adl://inddautbdtdls01.azuredatalakestore.net/root/output/log.txt",
+                                        "summary_file": "adl://inddautbdtdls01.azuredatalakestore.net/modifieddata/shab.csv"
+                                    }
+                                },
+                                "linkedServiceName": {
+                                    "referenceName": "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                                    "type": "LinkedServiceReference"
+                                }
+                            }
+                        ],
+                        "annotations": []
+                    },
+                    "dependsOn": [
+                        "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                        "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                        "[variables('inputDatasetName')]",
+                        "[variables('outputDatasetName')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                }
+
+            ]
+
+    }
+        
+    ]
+}
