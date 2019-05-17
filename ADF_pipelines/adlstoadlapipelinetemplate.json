@@ -4,12 +4,7 @@
     "parameters": {
         "dataFactoryName": {
             "type": "string"
-        },
-        "dataFactoryLocation": {
-            "type": "string",
-            "metadata": {
-                "description": "Location of the data factory."
-            }
+        }
         },
         "inputlinkeservice_servicePrincipalKey": {
             "type": "secureString"
