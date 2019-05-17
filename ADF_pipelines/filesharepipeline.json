@@ -2,7 +2,7 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "factoryName": {
+        "dataFactoryName": {
             "type": "string"
         },
         "dataFactoryLocation": {
@@ -30,7 +30,7 @@
     },
     "resources":[
         {
-            "name": "[parameters('factoryName')]",
+            "name": "[parameters('dataFactoryName')]",
             "apiVersion": "2018-06-01",
             "type": "Microsoft.DataFactory/factories",
             "location": "[resourceGroup().location]",
@@ -102,7 +102,7 @@
                 "[variables('outputdatasetforfile')]",
                 "[variables('inputlinkedservice')]",
                 "[variables('outputlinkedservice')]",
-                 "[parameters('factoryName')]"
+                 "[parameters('dataFactoryName')]"
                 
             ]
         },
@@ -123,7 +123,7 @@
                 }
             },
             "dependsOn": [
-                "[parameters('factoryName')]"
+                "[parameters('dataFactoryName')]"
             ]
         },
         {
@@ -138,7 +138,7 @@
                 }
             },
             "dependsOn": [
-                "[parameters('factoryName')]"
+                "[parameters('dataFactoryName')]"
             ]
         },
         {
@@ -170,7 +170,7 @@
             },
             "dependsOn": [
                 "[variables('inputlinkedservice')]",
-                "[parameters('factoryName')]"
+                "[parameters('dataFactoryName')]"
             ]
         },
         {
@@ -198,7 +198,7 @@
             },
             "dependsOn": [
                 "[variables('outputlinkedservice')]",
-                "[parameters('factoryName')]"
+                "[parameters('dataFactoryName')]"
             ]
         }
     ]

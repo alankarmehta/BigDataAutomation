@@ -29,7 +29,7 @@
 				"description": "Connection string for the Azure Storage account."
 			}
 		},
-		"blobContainer": {
+		"containerName": {
 			"type": "string",
 			"metadata": {
 				"description": "Name of the blob container in the Azure Storage account."
