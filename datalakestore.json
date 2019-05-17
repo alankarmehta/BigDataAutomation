@@ -64,7 +64,7 @@
         "type": "string",
         "value": "[parameters('rgName')]"
     },
-    "adlsrid": {
+    "adlsuri": {
       "type": "string",
       "value": "[concat('https://', parameters('adlStoreName'), '.azuredatalakestore.net/webhdfs/v1')]"
     }

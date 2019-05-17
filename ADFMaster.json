@@ -39,20 +39,16 @@
             }
         },
         "FileServer1_properties_typeProperties_userId": {
-            "type": "string",
-            "metadata": "string 'ID' of 'FileServer1'"
+            "type": "string"
         },
         "FileServer1_password": {
-            "type": "securestring",
-            "metadata": "Secure string for 'password' of 'FileServer1'"
+            "type": "securestring"
 		},
 		"AzureBlobStoragelinkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStoragelinkedservice'"
+			"type": "secureString"
 		  },
 		  "AzureDataLakeStorelinkedservice_servicePrincipalKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeStorelinkedservice'"
+			"type": "secureString"
 		  },
 		  "AzureDataLakeStorelinkedservice_properties_typeProperties_dataLakeStoreUri": {
 			"type": "string"
