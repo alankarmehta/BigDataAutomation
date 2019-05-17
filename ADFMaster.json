@@ -125,7 +125,7 @@
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
-							"uri": "https://raw.githubusercontent.com/tambolishab01/BigDataPOCWok/master/ADF_with_Copy_Pipeline_Task/sqltostoragetmptest.json",
+							"uri": "https://raw.githubusercontent.com/tambolishab01/BigdataDemo2/master/ADF_pipelines/sqltostoragepipeline.json",
 							"contentVersion": "1.0.0.0"
 						},
 						"parameters": {
@@ -161,7 +161,7 @@
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
-							"uri": "https://raw.githubusercontent.com/tambolishab01/BigDataPOCWok/master/File_share_ADF_pipeline/templatefileshare.json",
+							"uri": "https://raw.githubusercontent.com/tambolishab01/BigdataDemo2/master/ADF_pipelines/filesharepipeline.json",
 							"contentVersion": "1.0.0.0"
 						},
 						"parameters": {
@@ -191,7 +191,7 @@
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
-							"uri": "https://raw.githubusercontent.com/tambolishab01/BigDataPOCWok/master/BolobStorage_To_ADLS_ADF_Pipeline/StoragetoADLSPipe.json",
+							"uri": "https://raw.githubusercontent.com/tambolishab01/BigdataDemo2/master/ADF_pipelines/blobtoadlscopypipeline.json",
 							"contentVersion": "1.0.0.0"
 						},
 						"parameters": {
@@ -229,7 +229,7 @@
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
-							"uri": "https://raw.githubusercontent.com/tambolishab01/BigDataPOCWok/master/ADLS_ADLA_ADF_Pipeline/template.json",
+							"uri": "https://raw.githubusercontent.com/tambolishab01/BigdataDemo2/master/ADF_pipelines/adlstoadlapipelinetemplate.json",
 							"contentVersion": "1.0.0.0"
 						},
 						"parameters": {
