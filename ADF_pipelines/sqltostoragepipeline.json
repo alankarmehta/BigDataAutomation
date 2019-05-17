@@ -74,7 +74,10 @@
 								"type": "SecureString"
 							}
 						}
-					}
+					},
+					"dependsOn": [
+						"[parameters('dataFactoryName')]"
+					]
 				},		
 				{
 					"name": "[variables('onPremSqlServerLinkedServiceName')]",
