@@ -106,14 +106,7 @@
 
 
     },
-    "resources": [
-        {
-            "name": "[parameters('dataFactoryName')]",
-            "apiVersion": "2018-06-01",
-            "type": "Microsoft.DataFactory/factories",
-            "location": "[parameters('dataFactoryLocation')]",
-            "properties": {},
-            "resources": [							
+     "resources": [							
 				{
 					"type": "Microsoft.Resources/deployments",
 					"apiVersion": "2015-01-01",
@@ -270,12 +263,4 @@
 					}
 				}
 			]
-        }
-    ],
-    "outputs": {
-        "adfrid": {
-            "type": "string",
-            "value": "[resourceId('Microsoft.DataFactory/factories', parameters('dataFactoryName'))]"
-        }
-    }
 }
