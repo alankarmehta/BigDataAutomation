@@ -195,8 +195,8 @@
 
                                     },
                                     "parameters": {
-                                        "log_file": "adl://inddautbdtdls01.azuredatalakestore.net/root/output/log.txt",
-                                        "summary_file": "adl://inddautbdtdls01.azuredatalakestore.net/modifieddata/shab.csv"
+                                        "log_file": "adl://inddautbdtdls001.azuredatalakestore.net/root/output/log.txt",
+                                        "summary_file": "adl://inddautbdtdls001.azuredatalakestore.net/modifieddata/shab.csv"
                                     }
                                 },
                                 "linkedServiceName": {
