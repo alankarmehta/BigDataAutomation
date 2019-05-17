@@ -4,37 +4,29 @@
     "parameters": {
         "dataFactoryName": {
             "type": "string",
-            "metadata": "Data Factory Name",
-            "defaultValue": ""
+            "metadata": "Data Factory Name"
+            
         },
         "AzureBlobStoragelinkedservice_connectionString": {
-            "type": "secureString",
-            "metadata": "Secure string for 'connectionString' of 'AzureBlobStoragelinkedservice'"
+            "type": "secureString"
         },
         "AzureDataLakeStorelinkedservice_servicePrincipalKey": {
-            "type": "secureString",
-            "defaultValue": "",
-            "metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeStorelinkedservice'"
+            "type": "secureString"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_dataLakeStoreUri": {
-            "type": "string",
-            "defaultValue": ""
+            "type": "string"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_servicePrincipalId": {
-            "type": "string",
-            "defaultValue": "96290480-1b0b-4787-b6b3-5cf32bcd28b2"
+            "type": "string"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_tenant": {
-            "type": "string",
-            "defaultValue": "c160a942-c869-429f-8a96-f8c8296d57db"
+            "type": "string"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_subscriptionId": {
-            "type": "string",
-            "defaultValue": "07494aa9-3134-4cdd-9e14-e0d21257696c"
+            "type": "string"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_resourceGroupName": {
-            "type": "string",
-            "defaultValue": "bigrg"
+            "type": "string"
         }
     },
     "variables": {
