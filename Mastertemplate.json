@@ -241,7 +241,7 @@
                         "value":"[parameters('FileServer1_password')]"
                     },
                     "AzureBlobStoragelinkedservice_connectionString":{
-                        "value":"[reference('datalakestorageTemplate1').outputs.astrrid.value]"
+                        "value":"[reference('datalakestorageTemplate1').outputs.adlsrid.value]"
                     },
                     "AzureDataLakeStorelinkedservice_properties_typeProperties_dataLakeStoreUri":{
                         "value":"[reference('datalakestorageTemplate1').outputs.adlsuri.value]"
