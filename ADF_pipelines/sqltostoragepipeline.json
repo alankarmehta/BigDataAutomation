@@ -48,7 +48,7 @@
 		"inputDatasetName": "InputSQLDataset_01",
 		"outputDatasetName": "OutputBLOBDataset_01",
 		"pipelineName": "CopyFromOnPremSqlToBlobPipeline_01",
-		"triggerName" : "Trigger1_01"
+		"triggerName" : "Trigger1"
 	},
 	"resources": [
 		{

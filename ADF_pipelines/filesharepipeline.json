@@ -81,14 +81,14 @@
                         },
                         "inputs": [
                             {
-                                "referenceName": "fileinputdataset",
+                                "referenceName": "[variables('inputdatasetforfile')]",
                                 "type": "DatasetReference",
                                 "parameters": {}
                             }
                         ],
                         "outputs": [
                             {
-                                "referenceName": "storageoutputdatasetfile",
+                                "referenceName": "[variables('outputdatasetforfile')]",
                                 "type": "DatasetReference",
                                 "parameters": {}
                             }
