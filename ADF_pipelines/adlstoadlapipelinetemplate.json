@@ -132,7 +132,7 @@
                         ]
                     },
                     "dependsOn": [
-                        "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
+                        "[variables('AzureDataLakeStoreLinkedServiceName')]",
                         "[parameters('dataFactoryName')]"
                     ]
                 },
