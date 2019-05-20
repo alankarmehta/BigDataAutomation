@@ -4,7 +4,7 @@
     "parameters": {
         "storageAccountName": {
             "type": "string",
-            "defaultValue": "inddautbdtstr01"
+            "defaultValue": "inddautbdtstr002"
         },
         "containerName": {
             "type": "string",
@@ -15,21 +15,21 @@
         },
         "adlAnalyticsName": {
             "type": "string",
-            "defaultValue": "inddautbdtdla001",
+            "defaultValue": "inddautbdtdla002",
             "metadata": {
                 "description": "The name of the Data Lake Analytics account to create."
             }
         },
         "adlStoreName": {
             "type": "string",
-            "defaultValue": "inddautbdtdls001",
+            "defaultValue": "inddautbdtdls002",
             "metadata": {
                 "description": "The name of the Data Lake Store account to create."
             }
         },
         "dataFactoryName": {
             "type": "string",
-            "defaultValue": "inddautbdtadf001",
+            "defaultValue": "inddautbdtadf002",
             "metadata": {
                 "description": "Specifies the name of the blob container."
         }
