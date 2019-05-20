@@ -118,7 +118,7 @@
                         "typeProperties": {
                             "location": {
                                 "type": "AzureDataLakeStoreLocation",
-                                "folderPath": "root/output"
+                                "folderPath": "root/input"
                             },
                             "columnDelimiter": ",",
                             "escapeChar": "\\",
@@ -132,7 +132,7 @@
                         ]
                     },
                     "dependsOn": [
-                        "[variables('AzureDataLakeStoreLinkedServiceName')]",
+                        "[variables('AzureDataLakeAnalyticslinkedserviceName')]",
                         "[parameters('dataFactoryName')]"
                     ]
                 },
@@ -182,15 +182,15 @@
                                 },
                                 "userProperties": [],
                                 "typeProperties": {
-                                    "scriptPath": "root/output/SummarizeLogs.usql",
+                                    "scriptPath": "root/output/input/SummarizeLogs.usql",
                                     "scriptLinkedService": {
                                         "referenceName": "[variables('AzureDataLakeStoreLinkedServiceName')]",
                                         "type": "LinkedServiceReference"
 
                                     },
                                     "parameters": {
-                                        "log_file": "adl://inddautbdtdls001.azuredatalakestore.net/root/output/log.txt",
-                                        "summary_file": "adl://inddautbdtdls001.azuredatalakestore.net/modifieddata/shab.csv"
+                                        "log_file": "adl://inddautbdtdls002.azuredatalakestore.net/root/output/input/log.txt",
+                                        "summary_file": "adl://inddautbdtdls002.azuredatalakestore.net/modifieddata/shab.csv"
                                     }
                                 },
                                 "linkedServiceName": {

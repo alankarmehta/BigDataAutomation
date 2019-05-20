@@ -97,7 +97,7 @@
                 "typeProperties": {
                     "location": {
                         "type": "AzureBlobStorageLocation",
-                        "container": "log",
+                        "container": "logs",
                         "folderPath": "input"
                         
                     },
@@ -135,7 +135,7 @@
                 "typeProperties": {
                     "location": {
                         "type": "AzureDataLakeStoreLocation",
-                        "folderPath": "root/output"
+                        "folderPath": "root"
                     },
                     "columnDelimiter": ",",
                     "escapeChar": "\\",
