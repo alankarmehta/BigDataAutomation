@@ -85,14 +85,14 @@
          },
         "AzureDataLakeStorelinkedservice_servicePrincipalKey": {
             "type": "secureString",
-            "defaultValue": "8m8cLxzR1rXOBC80drWDqF2H8IUlSZ7OUhuhril5+Xc=",
+            "defaultValue": "IY1v6+ONiaKOGp1YZLg/W5tujdQbw6/hggHkfeu/NZI=",
             "metadata": {
                 "description": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeStorelinkedservice'"
             }
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_servicePrincipalId": {
             "type": "string",
-            "defaultValue": "96290480-1b0b-4787-b6b3-5cf32bcd28b2"
+            "defaultValue": "a0bd114f-2a8c-41c0-b808-21feef8cc9ed"
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_tenant": {
             "type": "string",
@@ -100,25 +100,25 @@
         },
         "AzureDataLakeStorelinkedservice_properties_typeProperties_subscriptionId": {
             "type": "string",
-            "defaultValue": "07494aa9-3134-4cdd-9e14-e0d21257696c"
+            "defaultValue": "d6327f0f-a8f5-4a20-a651-3020e65a158b"
         },
         "inputlinkeservice_servicePrincipalKey": {
             "type": "secureString",
-            "defaultValue": "8m8cLxzR1rXOBC80drWDqF2H8IUlSZ7OUhuhril5+Xc=",
+            "defaultValue": "IY1v6+ONiaKOGp1YZLg/W5tujdQbw6/hggHkfeu/NZI=",
             "metadata": {
                 "discription":"Secure string for 'servicePrincipalKey' of 'inputlinkeservice' key for datalakestorage"
             }
         },
         "AzureDataLakeAnalyticslinkservice_servicePrincipalKey": {
             "type": "secureString",
-            "defaultValue": "8m8cLxzR1rXOBC80drWDqF2H8IUlSZ7OUhuhril5+Xc=",
+            "defaultValue": "IY1v6+ONiaKOGp1YZLg/W5tujdQbw6/hggHkfeu/NZI=",
             "metadata": {
                 "discription":"Secure string for 'servicePrincipalKey' of 'AzureDataLakeAnalyticslinkservice' key for datalake anylytics"
             }
         },
         "inputlinkeservice_properties_typeProperties_servicePrincipalId": {
             "type": "string",
-            "defaultValue": "96290480-1b0b-4787-b6b3-5cf32bcd28b2"
+            "defaultValue": "a0bd114f-2a8c-41c0-b808-21feef8cc9ed"
         },
         "inputlinkeservice_properties_typeProperties_tenant": {
             "type": "string",
@@ -126,11 +126,11 @@
         },
         "inputlinkeservice_properties_typeProperties_subscriptionId": {
             "type": "string",
-            "defaultValue": "07494aa9-3134-4cdd-9e14-e0d21257696c"
+            "defaultValue": "d6327f0f-a8f5-4a20-a651-3020e65a158b"
         },
         "AzureDataLakeAnalyticslinkservice_properties_typeProperties_servicePrincipalId": {
             "type": "string",
-            "defaultValue": "96290480-1b0b-4787-b6b3-5cf32bcd28b2"
+            "defaultValue": "a0bd114f-2a8c-41c0-b808-21feef8cc9ed"
         },
         "AzureDataLakeAnalyticslinkservice_properties_typeProperties_tenant": {
             "type": "string",
@@ -138,7 +138,7 @@
         },
         "AzureDataLakeAnalyticslinkservice_properties_typeProperties_subscriptionId": {
             "type": "string",
-            "defaultValue": "07494aa9-3134-4cdd-9e14-e0d21257696c"
+            "defaultValue": "d6327f0f-a8f5-4a20-a651-3020e65a158b"
         }
 
        
