@@ -84,7 +84,7 @@
                                 },
                                 "inputs": [
                                     {
-                                        "referenceName": "fileinputdataset",
+                                        "referenceName": "fsdsip1",
                                         "type": "DatasetReference",
                                         "parameters": {}
                                     }
