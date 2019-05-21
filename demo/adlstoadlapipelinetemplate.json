@@ -118,7 +118,7 @@
                         "typeProperties": {
                             "location": {
                                 "type": "AzureDataLakeStoreLocation",
-                                "folderPath": "root/input"
+                                "folderPath": "root"
                             },
                             "columnDelimiter": ",",
                             "escapeChar": "\\",
@@ -182,14 +182,14 @@
                                 },
                                 "userProperties": [],
                                 "typeProperties": {
-                                    "scriptPath": "root/output/input/SummarizeLogs.usql",
+                                    "scriptPath": "root/SummarizeLogs.usql",
                                     "scriptLinkedService": {
                                         "referenceName": "[variables('AzureDataLakeStoreLinkedServiceName')]",
                                         "type": "LinkedServiceReference"
 
                                     },
                                     "parameters": {
-                                        "log_file": "adl://inddautbdtdls002.azuredatalakestore.net/root/output/input/log.txt",
+                                        "log_file": "adl://inddautbdtdls002.azuredatalakestore.net/root/log.txt",
                                         "summary_file": "adl://inddautbdtdls002.azuredatalakestore.net/modifieddata/shab.csv"
                                     }
                                 },
