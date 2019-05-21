@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+      vaults_name: "alankv321" 
+      vaults_rg_name: "demo1234"
+      secretName: "connstring"
+      startIpAddress: "49.35.7.172"
+      endIpAddress: "49.35.7.172"
+      storageAccountName: "inddautbdtstr002"
+      containerName: "logs"
+      adlAnalyticsName: "inddautbdtdla002"
+      adlStoreName: "inddautbdtdls002"
+      dataFactoryName: "inddautbdtadf002"
+      onPremSqlServerConnectionString: "Server=mysqlvmlabel1.eastus.cloudapp.azure.com,1433;Database=testdb;Integrated Security=false;User ID=Azureadmin;Password=Welcome@12345"
+      sqlTableName: "dbo.emp"
+      outputBlobFolder: "fromonpremsql"
+      resourcesgpname: "demobigdata"
+      location: "eastus2"
+      spkey: "IY1v6+ONiaKOGp1YZLg/W5tujdQbw6/hggHkfeu/NZI="
+      servicePrincipalId: "a0bd114f-2a8c-41c0-b808-21feef8cc9ed"
+      hostSubscriptionId: "d6327f0f-a8f5-4a20-a651-3020e65a158b"
+      tenant: "c160a942-c869-429f-8a96-f8c8296d57db"
+      templateLink: 'https://raw.githubusercontent.com/alankarmehta/BigDataAutomation/master/demo/Mastertemplate.json'
+
+  tasks:
+    - name: AZ Login to Azure
+      shell: >
+            az login --service-principal
+            -u "{{ servicePrincipalId | mandatory }}"
+            -p "{{ spkey | mandatory }}"
+            --tenant "{{ tenant | mandatory }}" && az account set --subscription "{{ hostSubscriptionId }}"
+
+    - name: Fetch service principal key from shared Key Vault
+      shell: >
+            echo $(az keyvault secret show --name "{{ secretName }}" --vault-name "{{ vaults_name }}" --query value --output tsv)
+      register: var_connstring
+
+    - name: Deploy ARM template
+      azure_rm_deployment:
+        subscription_id: "{{ hostSubscriptionId }}"
+        client_id: "{{ servicePrincipalId }}"
+        tenant: "{{ tenant }}"
+        secret: "{{ spkey }}"
+        resource_group_name: "{{ resourcesgpname }}"
+        location: "{{ location }}"
+        state: present
+        parameters:
+          startIpAddress: 
+            value: "{{ startIpAddress }}"
+          endIpAddress: 
+            value: "{{ endIpAddress }}"
+          storageAccountName: 
+            value: "{{ storageAccountName }}"
+          containerName: 
+            value: "{{ containerName }}"
+          adlAnalyticsName: 
+            value: "{{ adlAnalyticsName }}"
+          adlStoreName: 
+            value: "{{ adlStoreName }}"
+          dataFactoryName: 
+            value: "{{ dataFactoryName }}"
+          onPremSqlServerConnectionString: 
+            value: "{{ var_connstring.stdout }}"
+          sqlTableName: 
+            value: "{{ sqlTableName }}"
+          outputBlobFolder: 
+            value: "{{ outputBlobFolder }}"
+        template_link: '{{ templateLink }}'

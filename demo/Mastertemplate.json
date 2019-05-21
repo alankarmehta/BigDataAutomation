@@ -36,7 +36,7 @@
         },
         "dataFactoryLocation": {
             "type": "string",
-            "defaultValue": "East US",
+            "defaultValue": "East US 2",
 			"allowedValues": [
 				"East US",
 				"East US 2",
