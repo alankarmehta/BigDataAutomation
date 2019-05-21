@@ -31,10 +31,10 @@
         }
     },
     "variables": {
-        "azureStorageLinkedServiceName": "AzureStorage2LinkedService",
-        "DatalakeLinkedservice": "DataLakelinkedservice",
-        "inputDatasetName": "Blobdatasetstructure",
-        "outputDatasetName": "Datalakedataset",
+        "azureStorageLinkedServiceName": "bloblsip2",
+        "DatalakeLinkedservice": "adlslsop2",
+        "inputDatasetName": "blobdsip2",
+        "outputDatasetName": "adlsdsop2",
         "pipelineName": "CopyFromstoragetodatalake"
     },
     "resources": [
@@ -136,7 +136,7 @@
                         "typeProperties": {
                             "location": {
                                 "type": "AzureDataLakeStoreLocation",
-                                "folderPath": "root/output"
+                                "folderPath": "root"
                             },
                             "columnDelimiter": ",",
                             "escapeChar": "\\",

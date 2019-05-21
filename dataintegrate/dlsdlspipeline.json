@@ -42,7 +42,7 @@
             },
             "resources": [
                 {
-                    "name": "[concat(parameters('dataFactoryName'), '/inputlinkeservice')]",
+                    "name": "[concat(parameters('dataFactoryName'), '/adlsls4')]",
                     "type": "Microsoft.DataFactory/factories/linkedServices",
                     "apiVersion": "2018-06-01",
                     "properties": {
@@ -65,7 +65,7 @@
                     ]
                 },
                 {
-                    "name": "[concat(parameters('dataFactoryName'), '/AzureDataLakeAnalyticslinkservice')]",
+                    "name": "[concat(parameters('dataFactoryName'), '/adlals4')]",
                     "type": "Microsoft.DataFactory/factories/linkedServices",
                     "apiVersion": "2018-06-01",
                     "properties": {
@@ -88,12 +88,12 @@
                     ]
                 },
                 {
-                    "name": "[concat(parameters('dataFactoryName'), '/inputdataset')]",
+                    "name": "[concat(parameters('dataFactoryName'), '/adlsdsip4')]",
                     "type": "Microsoft.DataFactory/factories/datasets",
                     "apiVersion": "2018-06-01",
                     "properties": {
                         "linkedServiceName": {
-                            "referenceName": "inputlinkeservice",
+                            "referenceName": "adlsls4",
                             "type": "LinkedServiceReference"
                         },
                         "annotations": [],
@@ -101,7 +101,6 @@
                         "typeProperties": {
                             "location": {
                                 "type": "AzureDataLakeStoreLocation",
-                                "fileName": "SummarizeLogs.usql",
                                 "folderPath": "input"
                             },
                             "columnDelimiter": ",",
@@ -116,17 +115,17 @@
                         ]
                     },
                     "dependsOn": [
-                        "[concat(variables('factoryId'), '/linkedServices/inputlinkeservice')]",
+                        "[concat(variables('factoryId'), '/linkedServices/adlsls4')]",
                         "[parameters('dataFactoryName')]"
                     ]
                 },
                 {
-                    "name": "[concat(parameters('dataFactoryName'), '/outputdataset')]",
+                    "name": "[concat(parameters('dataFactoryName'), '/adlsdsop4')]",
                     "type": "Microsoft.DataFactory/factories/datasets",
                     "apiVersion": "2018-06-01",
                     "properties": {
                         "linkedServiceName": {
-                            "referenceName": "inputlinkeservice",
+                            "referenceName": "adlsls4",
                             "type": "LinkedServiceReference"
                         },
                         "annotations": [],
@@ -143,7 +142,7 @@
                         "schema": []
                     },
                     "dependsOn": [
-                        "[concat(variables('factoryId'), '/linkedServices/inputlinkeservice')]",
+                        "[concat(variables('factoryId'), '/linkedServices/adlsls4')]",
                         "[parameters('dataFactoryName')]"
                     ]
                 },
@@ -166,18 +165,18 @@
                                 },
                                 "userProperties": [],
                                 "typeProperties": {
-                                    "scriptPath": "script/SummarizeLogs.usql",
+                                    "scriptPath": "root/SummarizeLogs.usql",
                                     "scriptLinkedService": {
-                                        "referenceName": "inputlinkeservice",
+                                        "referenceName": "adlsls4",
                                         "type": "LinkedServiceReference"
                                     },
                                     "parameters": {
-                                        "log_file": "adl://shabadlsacnt.azuredatalakestore.net/input/log.txt",
-                                        "summary_file": "adl://shabadlsacnt.azuredatalakestore.net/output/shab.csv"
+                                        "log_file": "adl://inddautbdtdls002.azuredatalakestore.net/root/log.txt",
+                                        "summary_file": "adl://inddautbdtdls002.azuredatalakestore.net/output/summary.csv"
                                     }
                                 },
                                 "linkedServiceName": {
-                                    "referenceName": "AzureDataLakeAnalyticslinkservice",
+                                    "referenceName": "adlals4",
                                     "type": "LinkedServiceReference"
                                 }
                             }
@@ -185,9 +184,11 @@
                         "annotations": []
                     },
                     "dependsOn": [
-                        "[concat(variables('factoryId'), '/linkedServices/AzureDataLakeAnalyticslinkservice')]",
-                        "[concat(variables('factoryId'), '/linkedServices/inputlinkeservice')]",
-                        "[parameters('dataFactoryName')]"
+                        "[concat(variables('factoryId'), '/linkedServices/adlals4')]",
+                        "[concat(variables('factoryId'), '/linkedServices/adlsls4')]",
+                        "[parameters('dataFactoryName')]",
+                        "[variables('inputDatasetName')]",
+                        "[variables('outputDatasetName')]"
                     ]
                 }
             ]

@@ -23,10 +23,10 @@
     },
     "variables": {
         "pipelinename": "copyfilesharepipline",
-        "inputlinkedservice": "FileServer1",
-        "outputlinkedservice": "AzureBlobStoragelinkedservice",
-        "inputdatasetforfile": "fileinputdataset",
-        "outputdatasetforfile": "storageoutputdatasetfile"
+        "inputlinkedservice": "fslsip1",
+        "outputlinkedservice": "bloblsop1",
+        "inputdatasetforfile": "fsdsip1",
+        "outputdatasetforfile": "blobdsop1"
     },
     "resources": [
         {
@@ -91,7 +91,7 @@
                                 ],
                                 "outputs": [
                                     {
-                                        "referenceName": "storageoutputdatasetfile",
+                                        "referenceName": "[variables('outputdatasetforfile')]",
                                         "type": "DatasetReference",
                                         "parameters": {}
                                     }
@@ -189,7 +189,8 @@
                         "typeProperties": {
                             "location": {
                                 "type": "AzureBlobStorageLocation",
-                                "container": "adfsqlcontainer"
+                                "container": "logs",
+                                "folderPath":"input"
                             },
                             "columnDelimiter": ",",
                             "escapeChar": "\\",
