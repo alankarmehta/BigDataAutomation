@@ -186,9 +186,7 @@
                     "dependsOn": [
                         "[concat(variables('factoryId'), '/linkedServices/adlals4')]",
                         "[concat(variables('factoryId'), '/linkedServices/adlsls4')]",
-                        "[parameters('dataFactoryName')]",
-                        "[variables('inputDatasetName')]",
-                        "[variables('outputDatasetName')]"
+                        "[parameters('dataFactoryName')]"
                     ]
                 }
             ]
