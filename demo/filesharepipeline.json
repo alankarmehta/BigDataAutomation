@@ -27,7 +27,7 @@
         "outputlinkedservice": "AzureBlobStoragelinkedservice_02",
         "inputdatasetforfile": "fileinputdataset_02",
         "outputdatasetforfile": "storageoutputdatasetfile_02",
-        "triggerName" : "Trigger2"
+        "triggerName": "Trigger2"
     },
     "resources": [
         {
@@ -35,7 +35,9 @@
             "apiVersion": "2018-06-01",
             "type": "Microsoft.DataFactory/factories",
             "location": "[resourceGroup().location]",
-            "properties": {},
+            "properties": {
+                "mode": "Incremental"
+            },
             "resources": [
                 {
                     "name": "[variables('pipelinename')]",

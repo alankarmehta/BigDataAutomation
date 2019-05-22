@@ -48,7 +48,7 @@
 		"inputDatasetName": "InputSQLDataset_01",
 		"outputDatasetName": "OutputBLOBDataset_01",
 		"pipelineName": "CopyFromOnPremSqlToBlobPipeline_01",
-		"triggerName" : "Trigger1"
+		"triggerName": "Trigger1"
 	},
 	"resources": [
 		{
@@ -56,7 +56,9 @@
 			"apiVersion": "2018-06-01",
 			"type": "Microsoft.DataFactory/factories",
 			"location": "[resourceGroup().location]",
-			"properties": {},
+			"properties": {
+				"mode": "Incremental"
+			},
 			"resources": [
 				{
 					"type": "linkedservices",
@@ -78,7 +80,7 @@
 					"dependsOn": [
 						"[parameters('dataFactoryName')]"
 					]
-				},		
+				},
 				{
 					"name": "[variables('onPremSqlServerLinkedServiceName')]",
 					"type": "linkedServices",
@@ -125,28 +127,27 @@
 							"type": "LinkedServiceReference"
 						},
 						"annotations": [],
-                        "type": "DelimitedText",
-                        "typeProperties": {
-                              "location": {
-                                "type": "AzureBlobStorageLocation",
-                                 "fileName": {
-                                     "value": "@CONCAT(pipeline().RunId, '.txt')",
-                                      "type": "Expression"
-                                   },
-                                "folderPath": "fromonpremsql",
-                                 "container": "logs"
-                               },
-                              "columnDelimiter": ",",
-                              "escapeChar": "\\",
-                              "quoteChar": "\""
-                            },
-                            "schema": []
-                       },
-					   "dependsOn": [
+						"type": "DelimitedText",
+						"typeProperties": {
+							"location": {
+								"type": "AzureBlobStorageLocation",
+								"fileName": {
+									"value": "@CONCAT(pipeline().RunId, '.txt')",
+									"type": "Expression"
+								},
+								"folderPath": "fromonpremsql",
+								"container": "logs"
+							},
+							"columnDelimiter": ",",
+							"escapeChar": "\\",
+							"quoteChar": "\""
+						},
+						"schema": []
+					},
+					"dependsOn": [
 						"[parameters('dataFactoryName')]",
 						"[variables('azureStorageLinkedServiceName')]"
-						  
-					       ]
+					]
 				},
 				{
 					"type": "pipelines",
@@ -202,46 +203,43 @@
 								]
 							}
 						]
-							
 					}
-					
 				},
 				{
 					"type": "triggers",
 					"name": "[variables('triggerName')]",
 					"dependsOn": [
-							"[parameters('dataFactoryName')]",
-							"[variables('azureStorageLinkedServiceName')]",
-							"[variables ('onPremSqlServerLinkedServiceName')]",
-							"[variables('inputDatasetName')]",
-							"[variables('outputDatasetName')]",
-							"[variables('pipelineName')]"
+						"[parameters('dataFactoryName')]",
+						"[variables('azureStorageLinkedServiceName')]",
+						"[variables ('onPremSqlServerLinkedServiceName')]",
+						"[variables('inputDatasetName')]",
+						"[variables('outputDatasetName')]",
+						"[variables('pipelineName')]"
 					],
 					"apiVersion": "2018-06-01",
 					"properties": {
-							"type": "ScheduleTrigger",
-							"runtimeState": "Started",
-							"typeProperties": {
-									"recurrence": {
-											"frequency": "Minute",
-											"interval": 2,
-											"startTime": "2019-05-22T04:35:00.000Z",
-											"endTime": "2019-05-24T23:30:00.000Z",
-											"timeZone": "UTC"
-									}
-							},							
-							"pipelines": [{
-									"pipelineReference": {
-											"type": "PipelineReference",
-											"referenceName": "[variables('pipelineName')]"
-									},
-									"parameters": {}
-							}]
+						"type": "ScheduleTrigger",
+						"runtimeState": "Started",
+						"typeProperties": {
+							"recurrence": {
+								"frequency": "Minute",
+								"interval": 2,
+								"startTime": "2019-05-22T04:35:00.000Z",
+								"endTime": "2019-05-24T23:30:00.000Z",
+								"timeZone": "UTC"
+							}
+						},
+						"pipelines": [
+							{
+								"pipelineReference": {
+									"type": "PipelineReference",
+									"referenceName": "[variables('pipelineName')]"
+								},
+								"parameters": {}
+							}
+						]
 					}
-			}
-			
-			
-
+				}
 			]
 		}
 	]
