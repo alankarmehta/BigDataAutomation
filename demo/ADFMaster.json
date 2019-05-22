@@ -147,6 +147,9 @@
 					"type": "Microsoft.Resources/deployments",
 					"apiVersion": "2015-01-01",
 					"name": "filesharepipeline",
+					"dependsOn": [
+						"[concat('Microsoft.Resources/deployments/', 'sqltostoragepipeline')]"
+					],
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
@@ -177,6 +180,10 @@
 					"type": "Microsoft.Resources/deployments",
 					"apiVersion": "2015-01-01",
 					"name": "blobtoadlscopypipeline",
+					"dependsOn": [
+						"[concat('Microsoft.Resources/deployments/', 'sqltostoragepipeline')]",
+						"[concat('Microsoft.Resources/deployments/', 'filesharepipeline')]"
+					],
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
@@ -215,6 +222,11 @@
 					"type": "Microsoft.Resources/deployments",
 					"apiVersion": "2015-01-01",
 					"name": "ADLStoADLApipeline",
+					"dependsOn": [
+						"[concat('Microsoft.Resources/deployments/', 'sqltostoragepipeline')]",
+						"[concat('Microsoft.Resources/deployments/', 'filesharepipeline')]",
+						"[concat('Microsoft.Resources/deployments/', 'blobtoadlscopypipeline')]"
+					],
 					"properties": {
 						"mode": "Incremental",
 						"templateLink": {
