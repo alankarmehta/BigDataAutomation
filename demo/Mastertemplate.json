@@ -37,7 +37,7 @@
         },
         "dataFactoryName": {
             "type": "string",
-            "defaultValue": "inddautbdtadf005",
+            "defaultValue": "inddautbdtadf006",
             "metadata": {
                 "description": "Specifies the name of the blob container."
         }
