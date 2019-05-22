@@ -1,0 +1,47 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataFactoryName": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[concat(parameters('dataFactoryName'), '/hivepipeline1')]",
+            "type": "Microsoft.DataFactory/factories/pipelines",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2018-06-01",
+            "properties": {
+                "activities": [
+                    {
+                        "name": "test", 
+                        "type": "HDInsightHive",
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "typeProperties": {
+                            "scriptPath": "hive/SummarizeLogs.hql",
+                            "defines": {
+                                "Output": "wasb://hive@hivecode.core.windows.net/outputfolder"
+                            },
+                            "scriptLinkedService": {
+                                "referenceName": "srcblobls",
+                                "type": "LinkedServiceReference"
+                            }
+                        },
+                        "linkedServiceName": {
+                            "referenceName": "hadoopls1ls",
+                            "type": "LinkedServiceReference"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

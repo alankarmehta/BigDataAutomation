@@ -1,0 +1,81 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataFactoryName": {
+            "type": "string"
+        },
+        "spkey": {
+            "type": "securestring"
+        },
+        "clusterPassword": {
+            "type": "securestring"
+        },
+        "servicePrincipalId": {
+            "type": "string"
+        },
+        "hostSubscriptionId": {
+            "type": "string"
+        },
+        "tenant": {
+            "type": "string"
+        },
+        "ClusterUserName": {
+           "type": "securestring" 
+        },
+        "Instancesize": {
+           "type": "int" 
+        },
+        "resourcesgpname": {
+           "type": "string" 
+        }
+    },
+    "variables": { },
+    "resources": [
+        {
+            "name": "[concat(parameters('dataFactoryName'),'/hadoopls1ls')]",
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "type": "HDInsightOnDemand",
+                "typeProperties": {
+                    "clusterType": "hadoop",
+                    "clusterSize": "[parameters('Instancesize')]",
+                    "timeToLive": "00:05:00",
+                    "version": "3.6",
+                    "hostSubscriptionId": "[parameters('hostSubscriptionId')]",
+                    "clusterResourceGroup": "[parameters('resourcesgpname')]",
+                    "servicePrincipalId": "[parameters('servicePrincipalId')]",
+                    "servicePrincipalKey": {
+                        "value": "[parameters('spkey')]",
+                        "type": "SecureString"
+                    },
+                    "osType": "Linux",
+                    "tenant": "[parameters('tenant')]",
+                    "clusterNamePrefix": "",
+                    "clusterUserName": "[parameters('ClusterUserName')]",
+                    "clusterPassword": {
+                        "value": "[parameters('clusterPassword')]",
+                        "type": "SecureString"
+                    },
+                    "clusterSshUserName": "sshuser",
+                    "clusterSshPassword": {
+                        "value": "[parameters('clusterPassword')]",
+                        "type": "SecureString"
+                    },
+                    "additionalLinkedServiceNames": [
+                        {
+                            "referenceName": "srcblobls",
+                            "type": "LinkedServiceReference"
+                        }
+                    ],
+                    "linkedServiceName": {
+                        "referenceName": "srcblobls",
+                        "type": "LinkedServiceReference"
+                    }
+                }
+            }
+        }
+    ]
+}
