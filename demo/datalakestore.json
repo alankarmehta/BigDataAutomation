@@ -2,9 +2,21 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "startIpAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "IP address to provide access too"
+      }
+    },
+    "endIpAddress": {
+      "type": "string",
+      "metadata": {
+        "description": "IP address to provide access too"
+      }
+    },
     "rgName": {
-        "type": "string",
-        "defaultValue": "[resourcegroup().name]"
+      "type": "string",
+      "defaultValue": "[resourcegroup().name]"
     },
     "adlAnalyticsName": {
       "type": "string",
@@ -29,8 +41,19 @@
       "type": "Microsoft.DataLakeStore/accounts",
       "location": "[resourceGroup().location]",
       "apiVersion": "2016-11-01",
-      "dependsOn": [],
-      "tags": {}
+      "properties": {
+        "firewallRules": [
+          {
+            "name": "[concat(parameters('adlStoreName'), 'rule1')]",
+            "properties": {
+              "startIpAddress": "[parameters('startIpAddress')]",
+              "endIpAddress": "[parameters('endIpAddress')]"
+            }
+          }
+        ],
+        "firewallState": "Enabled",
+        "firewallAllowAzureIps": "Enabled"
+      }
     },
     {
       "name": "[parameters('adlAnalyticsName')]",
@@ -47,7 +70,18 @@
           {
             "name": "[parameters('adlStoreName')]"
           }
-        ]
+        ],
+        "firewallRules": [
+          {
+            "name": "[concat(parameters('adlAnalyticsName'), 'rule2')]",
+            "properties": {
+              "startIpAddress": "[parameters('startIpAddress')]",
+              "endIpAddress": "[parameters('endIpAddress')]"
+            }
+          }
+        ],
+        "firewallState": "Enabled",
+        "firewallAllowAzureIps": "Enabled"
       }
     }
   ],
@@ -56,13 +90,13 @@
       "type": "string",
       "value": "[resourceId('Microsoft.DataLakeAnalytics/accounts', parameters('adlAnalyticsName'))]"
     },
-    "adlan":{
-        "type": "string",
-        "value": "[parameters('adlAnalyticsName')]"
+    "adlan": {
+      "type": "string",
+      "value": "[parameters('adlAnalyticsName')]"
     },
     "adlarg": {
-        "type": "string",
-        "value": "[parameters('rgName')]"
+      "type": "string",
+      "value": "[parameters('rgName')]"
     },
     "adlsuri": {
       "type": "string",

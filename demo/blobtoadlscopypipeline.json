@@ -5,7 +5,6 @@
         "dataFactoryName": {
             "type": "string",
             "metadata": "Data Factory Name"
-            
         },
         "AzureBlobStoragelinkedservice_connectionString": {
             "type": "secureString"
@@ -30,12 +29,12 @@
         }
     },
     "variables": {
-
         "azureStorageLinkedServiceName": "AzureStorage2LinkedService_03",
-		"DatalakeLinkedservice": "DataLakelinkedservice_03",
-		"inputDatasetName": "Blobdatasetstructure_03",
-		"outputDatasetName": "Datalakedataset_03",
-		"pipelineName": "CopyFromstoragetodatalake_03"
+        "DatalakeLinkedservice": "DataLakelinkedservice_03",
+        "inputDatasetName": "Blobdatasetstructure_03",
+        "outputDatasetName": "Datalakedataset_03",
+        "pipelineName": "CopyFromstoragetodatalake_03",
+        "triggerName" : "Trigger3"
     },
     "resources": [
         {
@@ -44,179 +43,211 @@
             "type": "Microsoft.DataFactory/factories",
             "location": "[resourceGroup().location]",
             "properties": {},
-    "resources": [
-        {
-            "name": "[variables('azureStorageLinkedServiceName')]",
-            "type": "linkedServices",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "annotations": [],
-                "type": "AzureBlobStorage",
-                "typeProperties": {
-                    "connectionString": "[parameters('AzureBlobStoragelinkedservice_connectionString')]"
-                }
-            },
-            "dependsOn": [
-                "[parameters('dataFactoryName')]"
-            ]
-        },
-        {
-            "name": "[variables('DatalakeLinkedservice')]",
-            "type": "linkedServices",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "annotations": [],
-                "type": "AzureDataLakeStore",
-                "typeProperties": {
-                    "dataLakeStoreUri": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_dataLakeStoreUri')]",
-                    "servicePrincipalId": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_servicePrincipalId')]",
-                    "servicePrincipalKey": {
-                        "type": "SecureString",
-                        "value": "[parameters('AzureDataLakeStorelinkedservice_servicePrincipalKey')]"
-                    },
-                    "tenant": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_tenant')]",
-                    "subscriptionId": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_subscriptionId')]",
-                    "resourceGroupName": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_resourceGroupName')]"
-                }
-            },
-            "dependsOn": [
-                "[parameters('dataFactoryName')]"
-            ]
-        },
-        {
-            "name": "[variables('inputDatasetName')]",
-            "type": "datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "[variables('azureStorageLinkedServiceName')]",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "DelimitedText",
-                "typeProperties": {
-                    "location": {
-                        "type": "AzureBlobStorageLocation",
-                        "container": "logs",
-                        "folderPath": "input"
-                        
-                    },
-                    "columnDelimiter": ",",
-                    "escapeChar": "\\",
-                    "quoteChar": "\""
-                },
-                "schema": [
-                    {
-                        "name": "Prop_0",
-                        "type": "String"
-                    },
-                    {
-                        "name": "Prop_1",
-                        "type": "String"
-                    }
-                ]
-            },
-            "dependsOn": [
-                "[variables('azureStorageLinkedServiceName')]",
-                "[parameters('dataFactoryName')]"
-            ]
-        },
-        {
-            "name": "[variables('outputDatasetName')]",
-            "type": "datasets",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "linkedServiceName": {
-                    "referenceName": "[variables('DatalakeLinkedservice')]",
-                    "type": "LinkedServiceReference"
-                },
-                "annotations": [],
-                "type": "DelimitedText",
-                "typeProperties": {
-                    "location": {
-                        "type": "AzureDataLakeStoreLocation",
-                        "folderPath": "root"
-                    },
-                    "columnDelimiter": ",",
-                    "escapeChar": "\\",
-                    "quoteChar": "\""
-                },
-                "schema": []
-            },
-            "dependsOn": [
-                "[variables('DatalakeLinkedservice')]",
-                "[parameters('dataFactoryName')]"
-            ]
-        },
-        {
-            "name": "[variables('pipelineName')]",
-            "type": "pipelines",
-            "apiVersion": "2018-06-01",
-            "properties": {
-                "activities": [
-                    {
-                        "name": "storagetodatalakecopypiplie",
-                        "type": "Copy",
-                        "dependsOn": [],
-                        "policy": {
-                            "timeout": "7.00:00:00",
-                            "retry": 0,
-                            "retryIntervalInSeconds": 30,
-                            "secureOutput": false,
-                            "secureInput": false
-                        },
-                        "userProperties": [],
+            "resources": [
+                {
+                    "name": "[variables('azureStorageLinkedServiceName')]",
+                    "type": "linkedServices",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "annotations": [],
+                        "type": "AzureBlobStorage",
                         "typeProperties": {
-                            "source": {
-                                "type": "DelimitedTextSource",
-                                "storeSettings": {
-                                    "type": "AzureBlobStorageReadSetting",
-                                    "wildcardFileName": "*",
-                                    "recursive": true
-                                },
-                                "formatSettings": {
-                                    "type": "DelimitedTextReadSetting"
-                                }
+                            "connectionString": "[parameters('AzureBlobStoragelinkedservice_connectionString')]"
+                        }
+                    },
+                    "dependsOn": [
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('DatalakeLinkedservice')]",
+                    "type": "linkedServices",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "annotations": [],
+                        "type": "AzureDataLakeStore",
+                        "typeProperties": {
+                            "dataLakeStoreUri": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_dataLakeStoreUri')]",
+                            "servicePrincipalId": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_servicePrincipalId')]",
+                            "servicePrincipalKey": {
+                                "type": "SecureString",
+                                "value": "[parameters('AzureDataLakeStorelinkedservice_servicePrincipalKey')]"
                             },
-                            "sink": {
-                                "type": "DelimitedTextSink",
-                                "storeSettings": {
-                                    "type": "AzureDataLakeStoreWriteSetting",
-                                    "recursive": true
-                                },
-                                "formatSettings": {
-                                    "type": "DelimitedTextWriteSetting",
-                                    "quoteAllText": true,
-                                    "fileExtension": ".txt"
-                                }
-                            },
-                            "enableStaging": false
+                            "tenant": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_tenant')]",
+                            "subscriptionId": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_subscriptionId')]",
+                            "resourceGroupName": "[parameters('AzureDataLakeStorelinkedservice_properties_typeProperties_resourceGroupName')]"
+                        }
+                    },
+                    "dependsOn": [
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('inputDatasetName')]",
+                    "type": "datasets",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "linkedServiceName": {
+                            "referenceName": "[variables('azureStorageLinkedServiceName')]",
+                            "type": "LinkedServiceReference"
                         },
-                        "inputs": [
+                        "annotations": [],
+                        "type": "DelimitedText",
+                        "typeProperties": {
+                            "location": {
+                                "type": "AzureBlobStorageLocation",
+                                "container": "logs",
+                                "folderPath": "input"
+                            },
+                            "columnDelimiter": ",",
+                            "escapeChar": "\\",
+                            "quoteChar": "\""
+                        },
+                        "schema": [
                             {
-                                "referenceName": "[variables('inputDatasetName')]",
-                                "type": "DatasetReference",
-                                "parameters": {}
+                                "name": "Prop_0",
+                                "type": "String"
+                            },
+                            {
+                                "name": "Prop_1",
+                                "type": "String"
+                            }
+                        ]
+                    },
+                    "dependsOn": [
+                        "[variables('azureStorageLinkedServiceName')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('outputDatasetName')]",
+                    "type": "datasets",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "linkedServiceName": {
+                            "referenceName": "[variables('DatalakeLinkedservice')]",
+                            "type": "LinkedServiceReference"
+                        },
+                        "annotations": [],
+                        "type": "DelimitedText",
+                        "typeProperties": {
+                            "location": {
+                                "type": "AzureDataLakeStoreLocation",
+                                "folderPath": "root"
+                            },
+                            "columnDelimiter": ",",
+                            "escapeChar": "\\",
+                            "quoteChar": "\""
+                        },
+                        "schema": []
+                    },
+                    "dependsOn": [
+                        "[variables('DatalakeLinkedservice')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "name": "[variables('pipelineName')]",
+                    "type": "pipelines",
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "activities": [
+                            {
+                                "name": "storagetodatalakecopypiplie",
+                                "type": "Copy",
+                                "dependsOn": [],
+                                "policy": {
+                                    "timeout": "7.00:00:00",
+                                    "retry": 0,
+                                    "retryIntervalInSeconds": 30,
+                                    "secureOutput": false,
+                                    "secureInput": false
+                                },
+                                "userProperties": [],
+                                "typeProperties": {
+                                    "source": {
+                                        "type": "DelimitedTextSource",
+                                        "storeSettings": {
+                                            "type": "AzureBlobStorageReadSetting",
+                                            "wildcardFileName": "*",
+                                            "recursive": true
+                                        },
+                                        "formatSettings": {
+                                            "type": "DelimitedTextReadSetting"
+                                        }
+                                    },
+                                    "sink": {
+                                        "type": "DelimitedTextSink",
+                                        "storeSettings": {
+                                            "type": "AzureDataLakeStoreWriteSetting",
+                                            "recursive": true
+                                        },
+                                        "formatSettings": {
+                                            "type": "DelimitedTextWriteSetting",
+                                            "quoteAllText": true,
+                                            "fileExtension": ".txt"
+                                        }
+                                    },
+                                    "enableStaging": false
+                                },
+                                "inputs": [
+                                    {
+                                        "referenceName": "[variables('inputDatasetName')]",
+                                        "type": "DatasetReference",
+                                        "parameters": {}
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "referenceName": "[variables('outputDatasetName')]",
+                                        "type": "DatasetReference",
+                                        "parameters": {}
+                                    }
+                                ]
                             }
                         ],
-                        "outputs": [
+                        "annotations": []
+                    },
+                    "dependsOn": [
+                        "[variables('inputDatasetName')]",
+                        "[variables('outputDatasetName')]",
+                        "[parameters('dataFactoryName')]"
+                    ]
+                },
+                {
+                    "type": "triggers",
+                    "name": "[variables('triggerName')]",
+                    "dependsOn": [
+                        "[parameters('dataFactoryName')]",
+                        "[variables('inputDatasetName')]",
+                        "[variables ('outputDatasetName')]",
+                        "[variables('pipelineName')]"
+                    ],
+                    "apiVersion": "2018-06-01",
+                    "properties": {
+                        "type": "ScheduleTrigger",
+                        "runtimeState": "Started",
+                        "typeProperties": {
+                            "recurrence": {
+                                "frequency": "Minute",
+                                "interval": 10,
+                                "startTime": "2019-05-22T04:35:00.000Z",
+                                "endTime": "2019-05-22T05:35:00.000Z",
+                                "timeZone": "UTC"
+                            }
+                        },
+                        "pipelines": [
                             {
-                                "referenceName": "[variables('outputDatasetName')]",
-                                "type": "DatasetReference",
+                                "pipelineReference": {
+                                    "type": "PipelineReference",
+                                    "referenceName": "[variables('pipelineName')]"
+                                },
                                 "parameters": {}
                             }
                         ]
                     }
-                ],
-                "annotations": []
-            },
-            "dependsOn": [
-                "[variables('inputDatasetName')]",
-                "[variables('outputDatasetName')]",
-                "[parameters('dataFactoryName')]"
+                }
             ]
         }
-    ]
-}
     ]
 }

@@ -164,6 +164,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "startIpAddress": {
+                        "value": "[parameters('startIpAddress')]"
+                    },
                     "storageAccountName": {
                         "value": "[parameters('storageAccountName')]"
                     },
@@ -184,6 +187,12 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "startIpAddress": {
+                        "value": "[parameters('startIpAddress')]"
+                    },
+                    "endIpAddress": {
+                        "value": "[parameters('endIpAddress')]"
+                    },
                     "adlAnalyticsName": {
                         "value": "[parameters('adlAnalyticsName')]"
                     },
