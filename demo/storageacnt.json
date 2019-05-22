@@ -34,29 +34,6 @@
                 "tier": "Standard"
             },
                 "properties": {
-                    "networkAcls": {
-                        "bypass": "AzureServices",
-                        "virtualNetworkRules": [],
-                        "ipRules": [
-                            {
-                                "value": "[parameters('startIpAddress')]",
-                                "action": "Allow"
-                            }
-                        ],
-                        "defaultAction": "Deny"
-                    },
-                    "supportsHttpsTrafficOnly": true,
-                    "encryption": {
-                        "services": {
-                            "file": {
-                                "enabled": true
-                            },
-                            "blob": {
-                                "enabled": true
-                            }
-                        },
-                        "keySource": "Microsoft.Storage"
-                    },
                     "accessTier": "Hot"
                 },
             "resources": [
