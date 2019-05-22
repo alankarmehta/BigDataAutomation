@@ -12,7 +12,7 @@
       containerName: "logs"
       adlAnalyticsName: "inddautbdtdla002"
       adlStoreName: "inddautbdtdls002"
-      dataFactoryName: "inddautbdtadf011"
+      dataFactoryName: "inddautbdtadf012"
       onPremSqlServerConnectionString: "Server=mysqlvmlabel1.eastus.cloudapp.azure.com,1433;Database=testdb;Integrated Security=false;User ID=Azureadmin;Password=Welcome@12345"
       sqlTableName: "dbo.emp"
       outputBlobFolder: "fromonpremsql"
