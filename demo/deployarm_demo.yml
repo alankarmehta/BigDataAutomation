@@ -71,7 +71,7 @@
 
     - name: Start Trigger
       uri:
-        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}/triggers/Trigger1/start?api-version=2018-06-01"
+        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}}/triggers/Trigger1/start?api-version=2018-06-01"
         method: POST
         status_code: 200 
       retries: 3
@@ -79,7 +79,7 @@
 
     - name: Start Trigger
       uri:
-        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}/triggers/Trigger2/start?api-version=2018-06-01"
+        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}}/triggers/Trigger2/start?api-version=2018-06-01"
         method: POST
         status_code: 200 
       retries: 3
@@ -87,7 +87,7 @@
 
     - name: Start Trigger
       uri:
-        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}/triggers/Trigger3/start?api-version=2018-06-01"
+        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}}/triggers/Trigger3/start?api-version=2018-06-01"
         method: POST
         status_code: 200 
       retries: 3
@@ -95,7 +95,7 @@
 
     - name: Start Trigger
       uri:
-        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}/triggers/Trigger4/start?api-version=2018-06-01"
+        url: "https://management.azure.com/subscriptions/{{hostSubscriptionId}}/resourceGroups/{{resourcesgpname}}/providers/Microsoft.DataFactory/factories/{{dataFactoryName}}/triggers/Trigger4/start?api-version=2018-06-01"
         method: POST
         status_code: 200 
       retries: 3
