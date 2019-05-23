@@ -78,7 +78,7 @@
           body: "grant_type=client_credentials&client_id={{ servicePrincipalId |urlencode}}&client_secret={{ spkey |urlencode}}&resource=https://management.azure.com/"
           status_code: 200,201
           headers:
-          Content-Type: "application/json"
+          Content-Type: "application/x-www-form-urlencoded"
       register: var_access
 
 
