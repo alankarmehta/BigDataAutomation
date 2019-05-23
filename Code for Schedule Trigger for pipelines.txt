@@ -1,0 +1,33 @@
+{
+    "type": "triggers",
+"name": "[variables('triggerName')]",
+"dependsOn": [
+    "[parameters('dataFactoryName')]",
+    "[variables('azureStorageLinkedServiceName')]",
+    "[variables('inputDatasetName')]",
+    "[variables('outputDatasetName')]",
+    "[variables('pipelineName')]"
+],
+"apiVersion": "2018-06-01",
+"properties": {
+    "type": "ScheduleTrigger",
+    "typeProperties": {
+        "recurrence": {
+            "frequency": "Hour",
+            "interval": 1,
+            "startTime": "[parameters('triggerStartTime')]",
+            "endTime": "[parameters('triggerEndTime')]",
+            "timeZone": "UTC"
+        }
+    },
+    "pipelines": [
+        {
+            "pipelineReference": {
+                "type": "PipelineReference",
+                "referenceName": "ArmtemplateSampleCopyPipeline"
+            },
+            "parameters": {}
+        }
+    ]
+}
+}
