@@ -88,6 +88,7 @@
         method: POST
         headers:
           Authorization: "Bearer {{ var_access.json.access_token }}"
+          Content-Lenght: 0
           Content-Type: "application/json"
         status_code: 200 
       retries: 3
