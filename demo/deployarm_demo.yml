@@ -12,7 +12,7 @@
       containerName: "logs"
       adlAnalyticsName: "inddautbdtdla002"
       adlStoreName: "inddautbdtdls002"
-      dataFactoryName: "inddautbdtadf013"
+      dataFactoryName: "inddautbdtadf002"
       onPremSqlServerConnectionString: "Server=mysqlvmlabel1.eastus.cloudapp.azure.com,1433;Database=testdb;Integrated Security=false;User ID=Azureadmin;Password=Welcome@12345"
       sqlTableName: "dbo.emp"
       outputBlobFolder: "fromonpremsql"
@@ -32,7 +32,7 @@
             -p "{{ spkey | mandatory }}"
             --tenant "{{ tenant | mandatory }}" && az account set --subscription "{{ hostSubscriptionId }}"
 
-    - name: Fetch service principal key from shared Key Vault
+    - name: Fetch connection string to on-premise SQL DB from shared Key Vault
       shell: >
             echo $(az keyvault secret show --name "{{ secretName }}" --vault-name "{{ vaults_name }}" --query value --output tsv)
       register: var_connstring
@@ -68,3 +68,22 @@
           outputBlobFolder: 
             value: "{{ outputBlobFolder }}"
         template_link: '{{ templateLink }}'
+
+    - name: Fetch connection string to on-premise SQL DB from shared Key Vault
+      shell: >
+            echo $(Start-AzDataFactoryV2Trigger -ResourceGroupName "{{ resourcesgpname }}" -DataFactoryName "{{ dataFactoryName }}" -TriggerName "Trigger1" -Force)
+            Start-Sleep -Seconds 60
+
+    - name: Fetch connection string to on-premise SQL DB from shared Key Vault
+      shell: >
+            echo $(Start-AzDataFactoryV2Trigger -ResourceGroupName "{{ resourcesgpname }}" -DataFactoryName "{{ dataFactoryName }}" -TriggerName "Trigger2" -Force)
+            Start-Sleep -Seconds 60
+
+    - name: Fetch connection string to on-premise SQL DB from shared Key Vault
+      shell: >
+            echo $(Start-AzDataFactoryV2Trigger -ResourceGroupName "{{ resourcesgpname }}" -DataFactoryName "{{ dataFactoryName }}" -TriggerName "Trigger3" -Force)
+            Start-Sleep -Seconds 120
+
+    - name: Fetch connection string to on-premise SQL DB from shared Key Vault
+      shell: >
+            echo $(Start-AzDataFactoryV2Trigger -ResourceGroupName "{{ resourcesgpname }}" -DataFactoryName "{{ dataFactoryName }}" -TriggerName "Trigger4" -Force)            
